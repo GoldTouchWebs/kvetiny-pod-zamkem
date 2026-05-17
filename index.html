@@ -402,6 +402,7 @@
           id="hero-video"
           class="hero-video"
           src="assets/bouquet-scrubbable.mp4"
+          poster="assets/poster.jpg"
           muted
           playsinline
           preload="auto"
@@ -560,14 +561,38 @@
 
       video.addEventListener('loadedmetadata', () => {
         videoDuration = video.duration || 8;
+        forceFirstFrame();
         update();
       });
 
-      // iOS Safari sometimes needs a nudge — try to scrub once metadata is ready
       video.addEventListener('canplay', () => {
         videoDuration = video.duration || videoDuration;
+        forceFirstFrame();
         update();
       });
+
+      // Force the browser to actually decode and render a frame.
+      // Without this, a paused video element with currentTime=0 often shows
+      // nothing (white/transparent) until the user interacts. Playing then
+      // pausing immediately forces a frame to paint.
+      let firstFrameForced = false;
+      function forceFirstFrame() {
+        if (firstFrameForced) return;
+        firstFrameForced = true;
+        const p = video.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => {
+            video.pause();
+            video.currentTime = 0.001;
+          }).catch(() => {
+            // Autoplay blocked — poster image will be visible as fallback
+            video.currentTime = 0.001;
+          });
+        } else {
+          try { video.pause(); } catch (e) {}
+          video.currentTime = 0.001;
+        }
+      }
 
       function update() {
         const rect = scrollZone.getBoundingClientRect();
@@ -575,9 +600,10 @@
         const total = rect.height - window.innerHeight;
         const progress = Math.max(0, Math.min(1, scrolled / total));
         const t = progress * videoDuration;
-        // Avoid setting currentTime to exact duration (some browsers don't render final frame)
-        if (Math.abs(video.currentTime - t) > 0.02) {
-          try { video.currentTime = Math.min(t, videoDuration - 0.05); } catch (e) {}
+        // Clamp to avoid black frame at exact 0 or exact duration
+        const safeT = Math.max(0.001, Math.min(t, videoDuration - 0.05));
+        if (Math.abs(video.currentTime - safeT) > 0.02) {
+          try { video.currentTime = safeT; } catch (e) {}
         }
         ticking = false;
       }
