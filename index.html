@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Květiny pod zámkem — Kamenice nad Lipou</title>
+    <meta name="description" content="Květinářství v Kamenici nad Lipou. Ručně vázané kytice, svatební vazba, sezónní květiny a dekorace pro každou příležitost — pár kroků od zámku." />
+    <meta property="og:title" content="Květiny pod zámkem — Kamenice nad Lipou" />
+    <meta property="og:description" content="Ručně vázané kytice, svatební vazba a sezónní květiny. Najdete nás na nám. Čsl. armády v Kamenici nad Lipou." />
+    <meta property="og:type" content="website" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" />
+
+    <style>
+      :root {
+        --bg: #FAF3EB;
+        --bg-deep: #F0E2D0;
+        --paper: #EDC9A8;
+        --paper-deep: #D9A77F;
+        --sage: #93A48A;
+        --sage-deep: #6B8160;
+        --rose: #EFC0A0;
+        --pink: #E9B4B4;
+        --ink: #3D2F22;
+        --ink-soft: #6B5340;
+        --line: #E0CDB3;
+      }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: "Inter", -apple-system, system-ui, sans-serif;
+        font-weight: 300;
+        color: var(--ink);
+        background: var(--bg);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      h1, h2, h3 {
+        font-family: "Playfair Display", Georgia, serif;
+        font-weight: 400;
+        font-style: italic;
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+      }
+
+      /* ───────── Top Bar ───────── */
+      .topbar {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        padding: 22px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(250, 243, 235, 0);
+        transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+      }
+      .topbar.scrolled {
+        background: rgba(250, 243, 235, 0.92);
+        backdrop-filter: blur(12px);
+        padding: 16px 40px;
+        border-bottom: 1px solid var(--line);
+      }
+      .topbar-logo {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 22px;
+        color: var(--ink);
+        font-weight: 500;
+        text-decoration: none;
+      }
+      .topbar-logo .dot {
+        color: var(--paper-deep);
+      }
+      .topbar-nav {
+        display: flex;
+        gap: 32px;
+      }
+      .topbar-nav a {
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.04em;
+        transition: color 0.2s;
+      }
+      .topbar-nav a:hover { color: var(--paper-deep); }
+
+      /* ───────── Hero / Scroll Scrub ───────── */
+      .hero-scroll-zone {
+        position: relative;
+        height: 280vh;
+      }
+      .hero-sticky {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      .hero-video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+      }
+      .hero-vignette {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(ellipse 70% 60% at 50% 100%, rgba(0,0,0,0.32) 0%, transparent 60%),
+          linear-gradient(to bottom, rgba(250,243,235,0.18) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.18) 100%);
+        pointer-events: none;
+      }
+      .hero-content {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0 24px;
+        color: #fff;
+        z-index: 2;
+      }
+      .hero-eyebrow {
+        font-size: 13px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: rgba(255,255,255,0.85);
+        margin-bottom: 28px;
+        font-weight: 400;
+      }
+      .hero-title {
+        font-size: clamp(48px, 8vw, 104px);
+        font-style: italic;
+        font-weight: 400;
+        color: #fff;
+        text-shadow: 0 2px 30px rgba(60, 40, 25, 0.45);
+        margin-bottom: 24px;
+        max-width: 14ch;
+      }
+      .hero-sub {
+        font-size: clamp(16px, 1.4vw, 19px);
+        color: rgba(255,255,255,0.92);
+        font-weight: 300;
+        max-width: 32ch;
+        text-shadow: 0 1px 12px rgba(60,40,25,0.4);
+      }
+      .hero-scroll-hint {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,0.85);
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        z-index: 3;
+        animation: bob 2.5s ease-in-out infinite;
+      }
+      .hero-scroll-hint::after {
+        content: "";
+        display: block;
+        width: 1px;
+        height: 36px;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.9), transparent);
+        margin: 14px auto 0;
+      }
+      @keyframes bob {
+        0%, 100% { transform: translate(-50%, 0); opacity: 0.85; }
+        50% { transform: translate(-50%, 6px); opacity: 0.5; }
+      }
+
+      /* ───────── Sections shared ───────── */
+      .section {
+        padding: 140px 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .section-eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: var(--paper-deep);
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+      .section-title {
+        font-size: clamp(34px, 5vw, 56px);
+        margin-bottom: 28px;
+        max-width: 18ch;
+      }
+      .section-lead {
+        font-size: clamp(17px, 1.4vw, 20px);
+        color: var(--ink-soft);
+        max-width: 56ch;
+      }
+
+      /* ───────── About ───────── */
+      .about {
+        background: var(--bg);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 100px;
+        align-items: center;
+        margin-top: 60px;
+      }
+      .about-text p {
+        font-size: 17px;
+        color: var(--ink-soft);
+        margin-bottom: 22px;
+      }
+      .about-text p:first-of-type::first-letter {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 64px;
+        float: left;
+        line-height: 0.85;
+        margin: 8px 14px 0 -2px;
+        color: var(--paper-deep);
+      }
+      .about-image {
+        aspect-ratio: 3 / 4;
+        background:
+          linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.12) 100%),
+          radial-gradient(ellipse 80% 70% at 50% 40%, var(--rose) 0%, var(--paper) 60%, var(--paper-deep) 100%);
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 30px 60px -20px rgba(80, 50, 30, 0.25);
+      }
+      .about-image::after {
+        content: "Místo pro fotku";
+        position: absolute;
+        bottom: 24px; left: 24px;
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        color: rgba(255,255,255,0.75);
+        font-size: 14px;
+        letter-spacing: 0.1em;
+      }
+
+      /* ───────── Services ───────── */
+      .services {
+        background: var(--bg-deep);
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 60px;
+      }
+      .service-card {
+        background: var(--bg);
+        padding: 44px 32px;
+        border-radius: 2px;
+        border: 1px solid var(--line);
+        transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px -15px rgba(80, 50, 30, 0.15);
+        border-color: var(--paper);
+      }
+      .service-icon {
+        width: 48px; height: 48px;
+        margin-bottom: 24px;
+        color: var(--sage-deep);
+      }
+      .service-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+        font-style: italic;
+      }
+      .service-desc {
+        font-size: 15px;
+        color: var(--ink-soft);
+      }
+
+      /* ───────── Contact ───────── */
+      .contact {
+        background: var(--bg);
+        text-align: center;
+      }
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 60px;
+        margin-top: 80px;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+      }
+      .contact-item-label {
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--paper-deep);
+        margin-bottom: 16px;
+      }
+      .contact-item-value {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 22px;
+        color: var(--ink);
+        line-height: 1.4;
+      }
+      .contact-item-value a {
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 1px solid var(--line);
+        transition: border-color 0.2s;
+      }
+      .contact-item-value a:hover { border-color: var(--paper-deep); }
+
+      .socials {
+        margin-top: 70px;
+        display: flex;
+        justify-content: center;
+        gap: 26px;
+      }
+      .socials a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        color: var(--ink-soft);
+        text-decoration: none;
+        transition: color 0.25s, border-color 0.25s, transform 0.25s;
+      }
+      .socials a:hover {
+        color: var(--paper-deep);
+        border-color: var(--paper-deep);
+        transform: translateY(-2px);
+      }
+
+      /* ───────── Footer ───────── */
+      footer {
+        background: var(--ink);
+        color: rgba(255,255,255,0.6);
+        padding: 40px 24px;
+        text-align: center;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+      }
+      footer .heart { color: var(--pink); }
+
+      /* ───────── Reveal animation ───────── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 1s ease, transform 1s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ───────── Responsive ───────── */
+      @media (max-width: 900px) {
+        .topbar { padding: 16px 20px; }
+        .topbar.scrolled { padding: 12px 20px; }
+        .topbar-nav { display: none; }
+        .section { padding: 90px 20px; }
+        .about-grid { grid-template-columns: 1fr; gap: 50px; }
+        .services-grid { grid-template-columns: 1fr; }
+        .contact-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+        .hero-scroll-zone { height: 220vh; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ───────── Top Bar ───────── -->
+    <header class="topbar" id="topbar">
+      <a href="#" class="topbar-logo">Květiny <span class="dot">·</span> pod&nbsp;zámkem</a>
+      <nav class="topbar-nav">
+        <a href="#about">O nás</a>
+        <a href="#services">Pro každou příležitost</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </header>
+
+    <!-- ───────── Hero with scroll-scrubbed video ───────── -->
+    <section class="hero-scroll-zone" id="hero-scroll-zone">
+      <div class="hero-sticky">
+        <video
+          id="hero-video"
+          class="hero-video"
+          src="assets/bouquet-scrubbable.mp4"
+          muted
+          playsinline
+          preload="auto"
+          disablepictureinpicture
+          tabindex="-1"
+        ></video>
+        <div class="hero-vignette"></div>
+        <div class="hero-content">
+          <div class="hero-eyebrow">Květinářství &nbsp;·&nbsp; Kamenice nad Lipou</div>
+          <h1 class="hero-title">Ručně vázané z lásky k detailu</h1>
+          <p class="hero-sub">Každá kytice má svůj příběh — sezónní květiny, ručně vázané a zabalené tak, aby byly darem už na první pohled. Najdete nás kousek od&nbsp;zámku.</p>
+        </div>
+        <div class="hero-scroll-hint">Posouvej dolů</div>
+      </div>
+    </section>
+
+    <!-- ───────── About ───────── -->
+    <section class="section about" id="about">
+      <div class="section-eyebrow">O nás</div>
+      <h2 class="section-title reveal">Každá kytice začíná jednou květinou</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>Vázat květiny pro mě není práce, ale způsob jak vyprávět malé okamžiky — radost, vděčnost, vzpomínku. Každou kytici v naší prodejně na náměstí v Kamenici nad Lipou skládám ručně, květinu po květině, s respektem k tomu, co která sezóna nabízí.</p>
+          <p>Pracuji se sezónními květinami a vyhýbám se umělým barvám. Když ode mě dostanete kytici, dostanete kus zahrady — ne anonymní zboží z velkoobchodu.</p>
+          <p>Ráda vám pomůžu vybrat: kytici pro maminku, svatební vazbu, smuteční doplněk, nebo jen něco pro sebe, protože si to zasloužíte. Stavte se u nás, jen pár kroků od zámku.</p>
+        </div>
+        <div class="about-image reveal" aria-label="Místo pro fotku sestry nebo dílny"></div>
+      </div>
+    </section>
+
+    <!-- ───────── Services ───────── -->
+    <section class="section services" id="services">
+      <div class="section-eyebrow">Pro každou příležitost</div>
+      <h2 class="section-title reveal">Co pro vás dokážu uvázat</h2>
+      <p class="section-lead reveal">Od jedné růže po svatební bránu z květin. Stačí napsat nebo zavolat, domluvíme si styl, rozpočet i termín předání.</p>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="24" cy="20" r="6" />
+            <circle cx="16" cy="14" r="5" />
+            <circle cx="32" cy="14" r="5" />
+            <circle cx="14" cy="22" r="5" />
+            <circle cx="34" cy="22" r="5" />
+            <path d="M24 26 L24 42" stroke-linecap="round"/>
+            <path d="M22 32 Q19 36 16 38" stroke-linecap="round"/>
+            <path d="M26 32 Q29 36 32 38" stroke-linecap="round"/>
+          </svg>
+          <h3 class="service-title">Sezónní kytice</h3>
+          <p class="service-desc">Kytice na míru z toho, co právě kvete. Pro narozeniny, výročí, nebo jen tak, protože pondělí.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M24 8 L24 40" stroke-linecap="round"/>
+            <path d="M16 12 Q24 18 32 12" stroke-linecap="round"/>
+            <path d="M14 22 Q24 28 34 22" stroke-linecap="round"/>
+            <path d="M16 32 Q24 38 32 32" stroke-linecap="round"/>
+            <circle cx="24" cy="10" r="3" fill="currentColor" opacity="0.3"/>
+          </svg>
+          <h3 class="service-title">Svatební vazba</h3>
+          <p class="service-desc">Kytice nevěsty, korsáže, výzdoba obřadu i tabule. Vyladíme barvy, květiny i náladu k vašemu dni.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M24 38 C 14 38 8 30 8 22 C 8 16 14 12 18 14 C 20 15 22 17 24 20 C 26 17 28 15 30 14 C 34 12 40 16 40 22 C 40 30 34 38 24 38 Z"/>
+          </svg>
+          <h3 class="service-title">Smuteční vazba</h3>
+          <p class="service-desc">Důstojné věnce, kytice na rakev, smuteční dekorace. S citem a porozuměním, krátkodobě i s předstihem.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="10" y="18" width="28" height="22" rx="2"/>
+            <path d="M10 24 L38 24"/>
+            <path d="M24 18 L24 14 C24 11 22 9 19 9 C16 9 14 11 14 14 C14 17 17 18 24 18"/>
+            <path d="M24 18 L24 14 C24 11 26 9 29 9 C32 9 34 11 34 14 C34 17 31 18 24 18"/>
+          </svg>
+          <h3 class="service-title">Dárkové balení</h3>
+          <p class="service-desc">Pošleme nebo doručíme: dárkové předplatné, květinové boxy, balené kytice na klíč včetně předání.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10 38 Q14 30 24 30 Q34 30 38 38"/>
+            <path d="M24 30 L24 20"/>
+            <ellipse cx="20" cy="16" rx="6" ry="4" transform="rotate(-25 20 16)"/>
+            <ellipse cx="28" cy="16" rx="6" ry="4" transform="rotate(25 28 16)"/>
+            <circle cx="24" cy="14" r="3"/>
+          </svg>
+          <h3 class="service-title">Eventy a firmy</h3>
+          <p class="service-desc">Pravidelná květinová výzdoba pro kavárny, ordinace, recepce. Diskrétní fakturace, čerstvé květiny každý týden.</p>
+        </div>
+
+        <div class="service-card reveal">
+          <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="24" cy="24" r="14"/>
+            <path d="M24 14 L24 24 L32 28" stroke-linecap="round"/>
+          </svg>
+          <h3 class="service-title">Expresní rozvoz</h3>
+          <p class="service-desc">Když je to na poslední chvíli — v rámci města do dvou hodin. Stačí zavolat, domluvíme termín i adresu.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Contact ───────── -->
+    <section class="section contact" id="contact">
+      <div class="section-eyebrow">Kontakt</div>
+      <h2 class="section-title reveal" style="margin-left: auto; margin-right: auto;">Napište nebo zavolejte</h2>
+      <p class="section-lead reveal" style="margin: 0 auto;">Nejrychleji se domluvíme telefonicky — řeknu vám, co máme zrovna čerstvé, a doladíme detaily.</p>
+
+      <div class="contact-grid">
+        <div class="reveal">
+          <div class="contact-item-label">Adresa</div>
+          <div class="contact-item-value">
+            <a href="https://www.google.com/maps/search/?api=1&query=n%C3%A1m.+%C4%8Csl.+arm%C3%A1dy+4+Kamenice+nad+Lipou" target="_blank" rel="noopener">
+              nám. Čsl. armády&nbsp;4<br/>394&nbsp;70 Kamenice nad&nbsp;Lipou
+            </a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="contact-item-label">Telefon &amp; e-mail</div>
+          <div class="contact-item-value">
+            <a href="tel:+420737886363">737&nbsp;886&nbsp;363</a><br/>
+            <a href="mailto:kvetinyzamek@seznam.cz" style="font-size: 16px; font-style: normal; font-family: 'Inter', sans-serif;">kvetinyzamek@seznam.cz</a>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="contact-item-label">Otevřeno</div>
+          <div class="contact-item-value">Po – Pá &nbsp;8–17<br/>So &nbsp;8–12<br/><span style="font-size: 14px; color: var(--ink-soft); font-style: normal; font-family: 'Inter', sans-serif;">Neděle zavřeno</span></div>
+        </div>
+      </div>
+
+      <div class="socials reveal">
+        <a href="https://www.facebook.com/kvetinypodzamkem" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.84c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.89h-2.33V22c4.78-.75 8.44-4.88 8.44-9.94Z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/kvetinykamenice" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="22" height="22"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2026 Květiny pod zámkem &nbsp;·&nbsp; Kamenice nad Lipou &nbsp;·&nbsp; Vyrobeno s&nbsp;<span class="heart">♥</span>&nbsp;pro&nbsp;každý&nbsp;všední&nbsp;den</p>
+    </footer>
+
+    <script>
+      // ───────── Scroll-scrubbed video ─────────
+      const video = document.getElementById('hero-video');
+      const scrollZone = document.getElementById('hero-scroll-zone');
+
+      let videoDuration = 8;
+      let ticking = false;
+
+      video.addEventListener('loadedmetadata', () => {
+        videoDuration = video.duration || 8;
+        update();
+      });
+
+      // iOS Safari sometimes needs a nudge — try to scrub once metadata is ready
+      video.addEventListener('canplay', () => {
+        videoDuration = video.duration || videoDuration;
+        update();
+      });
+
+      function update() {
+        const rect = scrollZone.getBoundingClientRect();
+        const scrolled = -rect.top;
+        const total = rect.height - window.innerHeight;
+        const progress = Math.max(0, Math.min(1, scrolled / total));
+        const t = progress * videoDuration;
+        // Avoid setting currentTime to exact duration (some browsers don't render final frame)
+        if (Math.abs(video.currentTime - t) > 0.02) {
+          try { video.currentTime = Math.min(t, videoDuration - 0.05); } catch (e) {}
+        }
+        ticking = false;
+      }
+
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll);
+
+      // ───────── Topbar background on scroll ─────────
+      const topbar = document.getElementById('topbar');
+      function updateTopbar() {
+        if (window.scrollY > 60) topbar.classList.add('scrolled');
+        else topbar.classList.remove('scrolled');
+      }
+      window.addEventListener('scroll', updateTopbar, { passive: true });
+      updateTopbar();
+
+      // ───────── Reveal on scroll ─────────
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

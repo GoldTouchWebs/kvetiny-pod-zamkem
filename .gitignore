@@ -1,0 +1,10 @@
+# macOS
+.DS_Store
+
+# Nepoužité experimentální assety
+assets/bouquet-scrubbable.mp4
+
+# Editor
+.vscode/
+.idea/
+*.swp
