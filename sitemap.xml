@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://kvetinypodzamkem.cz/</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://kvetinypodzamkem.cz/assets/poster.jpg</image:loc>
+      <image:title>Květiny pod zámkem — ručně vázaná kytice</image:title>
+      <image:caption>Květinářství Květiny pod zámkem, Kamenice nad Lipou</image:caption>
+    </image:image>
+  </url>
+</urlset>
