@@ -1,0 +1,45 @@
+{
+  "_comment": "CMS obsah webu Květiny pod zámkem. Stejný tvar přijde z DB (prototype_published_content) — worker ho injektuje jako window.__CMS_CONTENT__; na GitHub Pages ho cms-reader fetchne odtud. Zrcadlí ručně psaný obsah index.html.",
+  "settings": {
+    "web": { "name": "Květiny pod zámkem", "lang": "cs", "domain": "kvetinypodzamkem.cz" },
+    "forms": { "recipient": "kvetinyzamek@seznam.cz" },
+    "contact": {
+      "phone": "737 886 363",
+      "email": "kvetinyzamek@seznam.cz",
+      "address": "nám. Čsl. armády 4, 394 70 Kamenice nad Lipou"
+    }
+  },
+  "singletons": {
+    "hero.eyebrow": "Květinářství · Kamenice nad Lipou",
+    "hero.title": "Ručně vázané z lásky k detailu",
+    "hero.sub": "Každá kytice má svůj příběh — sezónní květiny, ručně vázané a zabalené tak, aby byly darem už na první pohled. Najdete nás kousek od zámku.",
+
+    "about.eyebrow": "O nás",
+    "about.title": "Každá kytice začíná jednou květinou",
+    "about.p1": "Vázat květiny pro mě není práce, ale způsob jak vyprávět malé okamžiky — radost, vděčnost, vzpomínku. Každou kytici v naší prodejně na náměstí v Kamenici nad Lipou skládám ručně, květinu po květině, s respektem k tomu, co která sezóna nabízí.",
+    "about.p2": "Pracuji se sezónními květinami a vyhýbám se umělým barvám. Když ode mě dostanete kytici, dostanete kus zahrady — ne anonymní zboží z velkoobchodu.",
+    "about.p3": "Ráda vám pomůžu vybrat: kytici pro maminku, svatební vazbu, smuteční doplněk, nebo jen něco pro sebe, protože si to zasloužíte. Stavte se u nás, jen pár kroků od zámku.",
+
+    "services.eyebrow": "Pro každou příležitost",
+    "services.title": "Co pro vás dokážu uvázat",
+    "services.lead": "Od jedné růže po svatební bránu z květin. Stačí napsat nebo zavolat, domluvíme si styl, rozpočet i termín předání.",
+    "services.s1.title": "Sezónní kytice",
+    "services.s1.desc": "Kytice na míru z toho, co právě kvete. Pro narozeniny, výročí, nebo jen tak, protože pondělí.",
+    "services.s2.title": "Svatební vazba",
+    "services.s2.desc": "Kytice nevěsty, korsáže, výzdoba obřadu i tabule. Vyladíme barvy, květiny i náladu k vašemu dni.",
+    "services.s3.title": "Smuteční vazba",
+    "services.s3.desc": "Důstojné věnce, kytice na rakev, smuteční dekorace. S citem a porozuměním, krátkodobě i s předstihem.",
+    "services.s4.title": "Dárkové balení",
+    "services.s4.desc": "Pošleme nebo doručíme: dárkové předplatné, květinové boxy, balené kytice na klíč včetně předání.",
+    "services.s5.title": "Eventy a firmy",
+    "services.s5.desc": "Pravidelná květinová výzdoba pro kavárny, ordinace, recepce. Diskrétní fakturace, čerstvé květiny každý týden.",
+    "services.s6.title": "Expresní rozvoz",
+    "services.s6.desc": "Když je to na poslední chvíli — v rámci města do dvou hodin. Stačí zavolat, domluvíme termín i adresu.",
+
+    "contact.eyebrow": "Kontakt",
+    "contact.title": "Napište nebo zavolejte",
+    "contact.lead": "Nejrychleji se domluvíme telefonicky — řeknu vám, co máme zrovna čerstvé, a doladíme detaily.",
+    "contact.phone": "737 886 363",
+    "contact.email": "kvetinyzamek@seznam.cz"
+  }
+}
